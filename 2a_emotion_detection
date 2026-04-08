@@ -1,0 +1,30 @@
+  1 import requests                                                                                                                                   
+  2 import json
+  3 
+  4 def emotion_detector(text_to_analyze):
+  5     # Watson NLP EmotionPredict endpoint
+  6     url = "https://sn-watson-emotion.labs.skills.network/v1/watson.runtime.nlp.v1/NlpService/EmotionPredict"
+  7 
+  8     # Required headers
+  9     headers = {
+ 10         "Content-Type": "application/json",
+ 11         "grpc-metadata-mm-model-id": "emotion_aggregated-workflow_lang_en_stock"
+ 12     }
+ 13 
+ 14     # Input JSON payload
+ 15     payload = {
+ 16         "raw_document": {
+ 17             "text": text_to_analyze
+ 18         }
+ 19     }
+ 20 
+ 21     # Send POST request
+ 22     response = requests.post(url, headers=headers, json=payload)
+ 23 
+ 24     # Convert response to JSON
+ 25     result = response.json()
+ 26 
+ 27     # Return the "text" attribute from the response object
+ 28     return result.get("text", None 
+
+
